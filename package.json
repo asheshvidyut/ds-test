@@ -1,0 +1,27 @@
+{
+  "name": "rails_react_recipe",
+  "private": true,
+  "dependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.12",
+    "@rails/webpacker": "4.3.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "@webpack-cli/serve": "^2.0.1",
+    "sass": "^1.58.3",
+    "sass-loader": "^13.2.0",
+    "webpack": "^4.0.0",
+    "webpack-cli": "^4.0.1",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
