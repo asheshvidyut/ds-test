@@ -10,7 +10,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AppCSS from 'App.scss';
+import AppCSS from './App.scss';
 
 export default class App extends React.Component {
     constructor() {
@@ -21,7 +21,6 @@ export default class App extends React.Component {
         return (<div>
             <AppBar position="static">
                 <Typography
-                    className={AppCSS.title}
                     variant="h6"
                     noWrap
                     component="a"
@@ -34,6 +33,7 @@ export default class App extends React.Component {
                         letterSpacing: '.3rem',
                         color: 'inherit',
                         textDecoration: 'none',
+                        marginLeft: '10px'
                     }}
                 >
                     DIRECTSHIFT
