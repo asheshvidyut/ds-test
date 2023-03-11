@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :redirect_if_unauth, only: :index
+  before_action :authenticate_user!, only: :index
   def index
   end
 
@@ -11,10 +11,13 @@ class HomeController < ApplicationController
 
   end
 
-  def redirect_if_unauth
-    unless user_signed_in?
+  private
+
+  def authenticate_user!
+    if user_signed_in?
+      super
+    else
       redirect_to :sign_in_path
     end
   end
-
 end

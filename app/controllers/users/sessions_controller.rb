@@ -18,7 +18,8 @@ class Users::SessionsController < Devise::SessionsController
 
     if resource.valid_password?(params[:user][:password])
       sign_in :user, resource
-      return render json: {status: :ok}
+      puts current_user.to_json
+      return render plain: {current_user: current_user.to_json}.to_s
     end
 
     invalid_login_attempt

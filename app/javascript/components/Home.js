@@ -10,11 +10,32 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import fetchWithCsrf from "../utils/fetchWithCsrf";
 
 export default class Home extends React.Component {
     constructor() {
         super();
+        this.getUserDetails();
+        this.state = {
+            user: null
+        }
     }
+
+    getUserDetails = () => {
+        fetch('/user_details').then((response) => {
+            response.json().then((data) => {
+                this.setState({user: data})
+            })
+        })
+    }
+
+    signOut = () => {
+        const token = document.querySelector('[name=csrf-token]').content
+        fetchWithCsrf('/users/sign_out', {method: 'DELETE'}).then((response) => {
+            window.location.href = '/signin';
+        });
+    }
+
 
     render() {
         return (<div>
@@ -38,6 +59,17 @@ export default class Home extends React.Component {
                     DIRECTSHIFT
                 </Typography>
             </AppBar>
+            <div className='signOutBar'>
+                <p>
+                    {this.state.user ?
+                        <span>{this.state.user.email}</span>
+                        : null
+                    }
+                </p>
+                <Button onClick={this.signOut}>
+                    Sign Out
+                </Button>
+            </div>
         </div>)
     }
 };

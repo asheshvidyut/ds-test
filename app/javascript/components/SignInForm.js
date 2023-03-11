@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import {TextField} from "@mui/material";
+import fetchWithCsrf from "../utils/fetchWithCsrf";
 
 export default class SignInForm extends React.Component {
     constructor() {
@@ -23,6 +24,7 @@ export default class SignInForm extends React.Component {
     }
 
     signin = () => {
+        const token = document.querySelector('[name=csrf-token]').content
         let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value;
@@ -34,11 +36,13 @@ export default class SignInForm extends React.Component {
             let formData = new FormData();
             formData.append("user[email]", email);
             formData.append("user[password]", password);
-            formData.append("user[remember_me]", 0);
+            formData.append("user[remember_me]", 1);
             formData.append("commit", "Log in")
-            fetch("/users/sign_in", {method: 'POST',
-                body: formData}).then((response) => {
-                console.log(response)
+            fetchWithCsrf("/users/sign_in", {
+                credentials: "include",
+                method: 'POST',
+                body: formData
+            }).then((response) => {
                 if (response.status === 200) {
                     window.location.href = "/";
                 } else {

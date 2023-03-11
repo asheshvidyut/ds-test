@@ -11,5 +11,6 @@ Rails.application.routes.draw do
 
   get 'signin' => 'home#signin', as: :sign_in_path
   get 'signup' => 'home#signup', as: :sign_up_path
+  get 'user_details' => 'api/v1/user#user_details', as: :user_details_path
 
 end
