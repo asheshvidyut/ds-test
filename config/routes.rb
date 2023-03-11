@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   root to: 'home#index'
 
+  get 'signin' => 'home#signin', as: :sign_in_path
+
 end

@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+.textAlignCenter {
+    text-align: center;
+}
+.signinForm {
+    display: flex;
+    flex-direction: column;
+}
+.signinForm * {
+    margin-bottom: 20px;
+}
+
+.signinForm span {
+    margin-bottom: unset !important;
+}
