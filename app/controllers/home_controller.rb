@@ -7,6 +7,10 @@ class HomeController < ApplicationController
 
   end
 
+  def signup
+
+  end
+
   def redirect_if_unauth
     unless user_signed_in?
       redirect_to :sign_in_path

@@ -12,16 +12,17 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import {TextField} from "@mui/material";
 
-export default class SignInForm extends React.Component {
+export default class SingUpForm extends React.Component {
     constructor() {
         super();
         this.state = {
             invalidEmail: false,
-            invalidPassword: false
+            invalidPassword: false,
+            invalidEmailError: ''
         }
     }
 
-    signin = () => {
+    signup = () => {
         let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value;
@@ -29,7 +30,28 @@ export default class SignInForm extends React.Component {
             let newState = {...this.state};
             newState.invalidPassword = false;
             newState.invalidEmail = false;
+            newState.invalidEmailError = '';
             this.setState(newState);
+            let formData = new FormData();
+            formData.append("user[email]", email);
+            formData.append("user[password]", password);
+            formData.append("user[password_confirmation]", password);
+            formData.append("commit", "Sign Up")
+            fetch("/users/", {method: 'POST',
+                body: formData}).then((response) => {
+                response.json().then((data) => {
+                    if (response.status === 201) {
+                        window.location.href = "/signin";
+                    } else {
+                        if (data && data.errors) {
+                            this.setState({
+                                invalidEmailError: 'Email ' + data.errors.email.join(" "),
+                                invalidEmail: true
+                            });
+                        }
+                    }
+                })
+            });
         }
         else {
             let newState = {...this.state};
@@ -67,7 +89,7 @@ export default class SignInForm extends React.Component {
             </AppBar>
             <Container maxWidth="sm">
                 <p className='textAlignCenter'>
-                    Sign In
+                    Sign Up
                 </p>
                 <div className='signinForm'>
                     {this.state.invalidEmail ?
@@ -78,7 +100,10 @@ export default class SignInForm extends React.Component {
                         <TextField error label="Password" variant="outlined" id="password" type="password"/>
                         : <TextField label="Password" variant="outlined" id="password" type="password"/>
                     }
-                    <Button variant="text" onClick={this.signin}>Login</Button>
+                    {this.state.invalidEmailError ?
+                        <span>{this.state.invalidEmailError}</span> : null
+                    }
+                    <Button variant="text" onClick={this.signup}>Register</Button>
                 </div>
             </Container>
         </div>)
