@@ -14,12 +14,26 @@
  *= require_self
  */
 
+body {
+    height: 100vh;
+}
+
+.maxHeight {
+    height: 100vh;
+}
+
 .textAlignCenter {
     text-align: center;
+}
+.formContainer {
+    display: flex !important;
+    align-items: center;
 }
 .signinForm {
     display: flex;
     flex-direction: column;
+    justify-items: center;
+    width: 100%;
 }
 .signinForm * {
     margin-bottom: 20px;
@@ -35,4 +49,8 @@
 .createReferralForm {
     text-align: center;
     margin-top: 100px;
+}
+.formbtn {
+    display: flex;
+    justify-content: space-between;
 }

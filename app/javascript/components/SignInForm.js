@@ -63,7 +63,7 @@ export default class SignInForm extends React.Component {
     }
 
     render() {
-        return (<div>
+        return (<div className='maxHeight'>
             <AppBar position="static">
                 <Typography
                     variant="h6"
@@ -84,11 +84,11 @@ export default class SignInForm extends React.Component {
                     DIRECTSHIFT
                 </Typography>
             </AppBar>
-            <Container maxWidth="sm">
-                <p className='textAlignCenter'>
-                    Sign In
-                </p>
+            <Container maxWidth="sm" className='maxHeight formContainer'>
                 <div className='signinForm'>
+                    <p className='textAlignCenter'>
+                        Sign In
+                    </p>
                     {this.state.invalidEmail ?
                         <TextField error label="Email" variant="outlined" id="email" type="email"/>
                         : <TextField label="Email" variant="outlined" id="email" type="email"/>
@@ -101,7 +101,13 @@ export default class SignInForm extends React.Component {
                         <span>Invalid Email or password.</span>
                         : null
                     }
-                    <Button variant="text" onClick={this.signin}>Login</Button>
+                    <div className='formbtn'>
+                        <Button variant="text" onClick={this.signin}>Login</Button>
+                        <Button variant="text" onClick={() => {
+                            window.location.href = "/signup";
+                        }
+                        }>Sign Up</Button>
+                    </div>
                 </div>
             </Container>
         </div>)

@@ -90,26 +90,34 @@ export default class SingUpForm extends React.Component {
                     DIRECTSHIFT
                 </Typography>
             </AppBar>
-            <Container maxWidth="sm">
-                <p className='textAlignCenter'>
-                    Sign Up
-                </p>
+            <Container maxWidth="sm" className='maxHeight formContainer'>
                 <div className='signinForm'>
-                    {this.state.invalidEmail ?
-                        <TextField error label="Email" variant="outlined" id="email" type="email"/>
-                        : <TextField label="Email" variant="outlined" id="email" type="email"/>
-                    }
-                    {this.state.invalidPassword ?
-                        <TextField error label="Password" variant="outlined" id="password" type="password"/>
-                        : <TextField label="Password" variant="outlined" id="password" type="password"/>
-                    }
-                    {this.state.invalidEmailError ?
-                        <span>{this.state.invalidEmailError}</span> : null
-                    }
-                    {this.state.invalidPasswordError ?
-                        <span>{this.state.invalidPasswordError}</span> : null
-                    }
-                    <Button variant="text" onClick={this.signup}>Register</Button>
+                    <p className='textAlignCenter'>
+                        Sign Up
+                    </p>
+                    <div className='signinForm'>
+                        {this.state.invalidEmail ?
+                            <TextField error label="Email" variant="outlined" id="email" type="email"/>
+                            : <TextField label="Email" variant="outlined" id="email" type="email"/>
+                        }
+                        {this.state.invalidPassword ?
+                            <TextField error label="Password" variant="outlined" id="password" type="password"/>
+                            : <TextField label="Password" variant="outlined" id="password" type="password"/>
+                        }
+                        {this.state.invalidEmailError ?
+                            <span>{this.state.invalidEmailError}</span> : null
+                        }
+                        {this.state.invalidPasswordError ?
+                            <span>{this.state.invalidPasswordError}</span> : null
+                        }
+                        <div className='formbtn'>
+                            <Button variant="text" onClick={this.signup}>Register</Button>
+                            <Button variant="text" onClick={() => {
+                                window.location.href = "/signin";
+                            }
+                            }>Sign In</Button>
+                        </div>
+                    </div>
                 </div>
             </Container>
         </div>)
