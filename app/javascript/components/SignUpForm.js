@@ -18,7 +18,8 @@ export default class SingUpForm extends React.Component {
         this.state = {
             invalidEmail: false,
             invalidPassword: false,
-            invalidEmailError: ''
+            invalidEmailError: '',
+            invalidPasswordError: ''
         }
     }
 
@@ -31,6 +32,7 @@ export default class SingUpForm extends React.Component {
             newState.invalidPassword = false;
             newState.invalidEmail = false;
             newState.invalidEmailError = '';
+            newState.invalidPasswordError = '';
             this.setState(newState);
             let formData = new FormData();
             formData.append("user[email]", email);
@@ -46,6 +48,7 @@ export default class SingUpForm extends React.Component {
                         if (data && data.errors) {
                             this.setState({
                                 invalidEmailError: 'Email ' + data.errors.email.join(" "),
+                                invalidPasswordError: 'Email ' + data.errors.password.join(" "),
                                 invalidEmail: true
                             });
                         }
@@ -102,6 +105,9 @@ export default class SingUpForm extends React.Component {
                     }
                     {this.state.invalidEmailError ?
                         <span>{this.state.invalidEmailError}</span> : null
+                    }
+                    {this.state.invalidPasswordError ?
+                        <span>{this.state.invalidPasswordError}</span> : null
                     }
                     <Button variant="text" onClick={this.signup}>Register</Button>
                 </div>

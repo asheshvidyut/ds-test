@@ -17,7 +17,8 @@ export default class SignInForm extends React.Component {
         super();
         this.state = {
             invalidEmail: false,
-            invalidPassword: false
+            invalidPassword: false,
+            invalidEmailOrPasswordError: '',
         }
     }
 
@@ -30,6 +31,20 @@ export default class SignInForm extends React.Component {
             newState.invalidPassword = false;
             newState.invalidEmail = false;
             this.setState(newState);
+            let formData = new FormData();
+            formData.append("user[email]", email);
+            formData.append("user[password]", password);
+            formData.append("user[remember_me]", 0);
+            formData.append("commit", "Log in")
+            fetch("/users/sign_in", {method: 'POST',
+                body: formData}).then((response) => {
+                console.log(response)
+                if (response.status === 200) {
+                    window.location.href = "/";
+                } else {
+                    this.setState({invalidEmailOrPasswordError: true})
+                }
+            });
         }
         else {
             let newState = {...this.state};
@@ -77,6 +92,10 @@ export default class SignInForm extends React.Component {
                     {this.state.invalidPassword ?
                         <TextField error label="Password" variant="outlined" id="password" type="password"/>
                         : <TextField label="Password" variant="outlined" id="password" type="password"/>
+                    }
+                    {this.state.invalidEmailOrPasswordError ?
+                        <span>Invalid Email or password.</span>
+                        : null
                     }
                     <Button variant="text" onClick={this.signin}>Login</Button>
                 </div>
