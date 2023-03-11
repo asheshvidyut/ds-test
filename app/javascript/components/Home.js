@@ -15,9 +15,9 @@ import ListReferral from "./ListReferral";
 import NavBar from "./NavBar";
 import {withRouter} from 'react-router-dom';
 
-export default class Home extends React.Component {
-    constructor() {
-        super();
+class Home extends React.Component {
+    constructor(props) {
+        super(props);
         this.getUserDetails();
         this.state = {
             user: null
@@ -34,7 +34,7 @@ export default class Home extends React.Component {
     }
 
     navigateToCreateReferral = () => {
-        this.props.history.push('/create-referral');
+        this.props.history.push("/create-referral")
     }
 
     signOut = () => {
@@ -71,3 +71,4 @@ export default class Home extends React.Component {
         </div>)
     }
 };
+export default withRouter(Home);

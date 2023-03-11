@@ -3,7 +3,6 @@ import Home from "../Home";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import CreateReferral from "../CreateReferral";
 
-
 export default (
     <Router>
         <Switch>

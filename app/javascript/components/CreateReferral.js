@@ -4,10 +4,11 @@ import Button from "@mui/material/Button";
 import {TextField} from "@mui/material";
 import {validRegex} from "../utils/emailHelper";
 import fetchWithCsrf from "../utils/fetchWithCsrf";
+import { withRouter } from 'react-router-dom';
 
-export default class CreateReferral extends React.Component {
-    constructor() {
-        super();
+class CreateReferral extends React.Component {
+    constructor(props) {
+        super(props);
         this.getUserDetails();
         this.state = {
             invalidEmail: null
@@ -36,7 +37,7 @@ export default class CreateReferral extends React.Component {
     }
 
     navigateToHome = () => {
-        this.props.history.push('/');
+        window.location.href = "/";
     }
 
     getUserDetails = () => {
@@ -79,3 +80,4 @@ export default class CreateReferral extends React.Component {
         </div>
     }
 }
+export default withRouter(CreateReferral)
