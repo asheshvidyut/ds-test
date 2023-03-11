@@ -65,3 +65,5 @@ end
 gem 'devise'
 
 gem 'webpacker', '~> 4.3.x'
+
+gem "letter_opener", group: :development

@@ -3,6 +3,10 @@ class HomeController < ApplicationController
   def index
   end
 
+  def create_referral
+
+  end
+
   def signin
 
   end
@@ -11,13 +15,4 @@ class HomeController < ApplicationController
 
   end
 
-  private
-
-  def authenticate_user!
-    if user_signed_in?
-      super
-    else
-      redirect_to :sign_in_path
-    end
-  end
 end

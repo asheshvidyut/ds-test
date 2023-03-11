@@ -12,6 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import {TextField} from "@mui/material";
 import fetchWithCsrf from "../utils/fetchWithCsrf";
+import {validRegex} from "../utils/emailHelper";
 
 export default class SignInForm extends React.Component {
     constructor() {
@@ -25,7 +26,6 @@ export default class SignInForm extends React.Component {
 
     signin = () => {
         const token = document.querySelector('[name=csrf-token]').content
-        let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value;
         if (email.match(validRegex) && password.length > 0) {

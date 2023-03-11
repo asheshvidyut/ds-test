@@ -28,3 +28,11 @@
 .signinForm span {
     margin-bottom: unset !important;
 }
+
+.signOutBar {
+    float: right;
+}
+.createReferralForm {
+    text-align: center;
+    margin-top: 100px;
+}

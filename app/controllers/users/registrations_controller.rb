@@ -15,6 +15,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    if Referral.find_by_email(params[:user][:email])
+      r = Referral.find_by_email(params[:user][:email])
+      r.signed_up = DateTime.now
+      r.save!
+    end
   end
 
   # GET /resource/edit
@@ -45,7 +50,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    params.permit(:email, :password)
+    params.require(:user).permit(:email, :password)
   end
 
   # If you have extra params to permit, append them to the sanitizer.

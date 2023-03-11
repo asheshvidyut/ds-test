@@ -11,6 +11,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import fetchWithCsrf from "../utils/fetchWithCsrf";
+import ListReferral from "./ListReferral";
+import NavBar from "./NavBar";
+import {withRouter} from 'react-router-dom';
 
 export default class Home extends React.Component {
     constructor() {
@@ -25,8 +28,13 @@ export default class Home extends React.Component {
         fetch('/user_details').then((response) => {
             response.json().then((data) => {
                 this.setState({user: data})
+                console.log(data);
             })
         })
+    }
+
+    navigateToCreateReferral = () => {
+        this.props.history.push('/create-referral');
     }
 
     signOut = () => {
@@ -39,26 +47,7 @@ export default class Home extends React.Component {
 
     render() {
         return (<div>
-            <AppBar position="static">
-                <Typography
-                    variant="h6"
-                    noWrap
-                    component="a"
-                    href="/"
-                    sx={{
-                        mr: 2,
-                        display: { xs: 'none', md: 'flex' },
-                        fontFamily: 'monospace',
-                        fontWeight: 700,
-                        letterSpacing: '.3rem',
-                        color: 'inherit',
-                        textDecoration: 'none',
-                        marginLeft: '10px'
-                    }}
-                >
-                    DIRECTSHIFT
-                </Typography>
-            </AppBar>
+            <NavBar></NavBar>
             <div className='signOutBar'>
                 <p>
                     {this.state.user ?
@@ -69,7 +58,16 @@ export default class Home extends React.Component {
                 <Button onClick={this.signOut}>
                     Sign Out
                 </Button>
+                <Button onClick={this.navigateToCreateReferral}>
+                    Create Referral
+                </Button>
             </div>
+            {this.state.user ?
+                <div className='referrals'>
+                    <ListReferral user={this.state.user} />
+                </div>
+                : null
+            }
         </div>)
     }
 };

@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import {TextField} from "@mui/material";
+import {validRegex} from "../utils/emailHelper";
 
 export default class SingUpForm extends React.Component {
     constructor() {
@@ -24,7 +25,6 @@ export default class SingUpForm extends React.Component {
     }
 
     signup = () => {
-        let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value;
         if (email.match(validRegex) && password.length > 0) {
