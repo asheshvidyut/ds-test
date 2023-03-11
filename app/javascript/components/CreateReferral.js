@@ -48,6 +48,13 @@ class CreateReferral extends React.Component {
         })
     }
 
+    signOut = () => {
+        const token = document.querySelector('[name=csrf-token]').content
+        fetchWithCsrf('/users/sign_out', {method: 'DELETE'}).then((response) => {
+            window.location.href = '/signin';
+        });
+    }
+
     render() {
         return <div>
             <NavBar></NavBar>
