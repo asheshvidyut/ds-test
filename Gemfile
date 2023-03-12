@@ -67,3 +67,7 @@ gem 'devise'
 gem 'webpacker', '~> 4.3.x'
 
 gem "letter_opener", group: :development
+
+group :development, :test do
+  gem 'rspec-rails', '~> 6.0.0'
+end
