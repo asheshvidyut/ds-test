@@ -1,24 +1,10 @@
-# README
+# README 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
+1. To start the app run - `./bin/dev`. This will start the Rails/React app server with Mysql.
+2. To setup database run - `./bin/setup`. This will rake rake db:migrate and create.
 
-Things you may want to cover:
+## Usage
+1. Open `http://localhost:3005` to use the app.
+2. Open `http://localhost:3005/letter_opener` to monitor the emails.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

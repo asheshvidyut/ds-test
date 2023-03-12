@@ -4,14 +4,17 @@ default:
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: batman777
-  socket: "/tmp/mysql.sock"
+  password: password
+  host: directshift-db
+  port: 3306
 development:
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: batman777
+  password: password
+  host: directshift-db
+  port: 3306
   socket: "/tmp/mysql.sock"
   database: directshift_development
 test:
@@ -19,8 +22,9 @@ test:
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: batman777
-  socket: "/tmp/mysql.sock"
+  password: password
+  host: directshift-db
+  port: 3306
   database: directshift_test
 production:
   adapter: mysql2

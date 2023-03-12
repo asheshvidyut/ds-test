@@ -66,11 +66,10 @@ gem 'devise'
 
 gem 'webpacker', '~> 4.3.x'
 
-gem "letter_opener", group: :development
-
 group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
   gem 'pry', '~> 0.13.1'
   gem 'factory_bot_rails'
+  gem 'letter_opener_web', '~> 2.0'
 end
 
