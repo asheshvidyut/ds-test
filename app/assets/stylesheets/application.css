@@ -15,11 +15,11 @@
  */
 
 body {
-    height: 100vh;
+    min-height: calc(100vh - 50px);
 }
 
 .maxHeight {
-    height: 100vh;
+    min-height: calc(100vh - 50px);
 }
 
 .textAlignCenter {
