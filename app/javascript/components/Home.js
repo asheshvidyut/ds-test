@@ -48,6 +48,9 @@ class Home extends React.Component {
     render() {
         return (<div>
             <NavBar></NavBar>
+            <Button onClick={this.navigateToCreateReferral}>
+                Create Referral
+            </Button>
             <div className='signOutBar'>
                 <p>
                     {this.state.user ?
@@ -57,9 +60,6 @@ class Home extends React.Component {
                 </p>
                 <Button onClick={this.signOut}>
                     Sign Out
-                </Button>
-                <Button onClick={this.navigateToCreateReferral}>
-                    Create Referral
                 </Button>
             </div>
             {this.state.user ?

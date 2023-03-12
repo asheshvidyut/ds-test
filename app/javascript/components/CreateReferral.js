@@ -58,6 +58,9 @@ class CreateReferral extends React.Component {
     render() {
         return <div>
             <NavBar></NavBar>
+            <Button onClick={this.navigateToHome}>
+                Home
+            </Button>
             <div className='signOutBar'>
                 <p>
                     {this.state.user ?
@@ -67,9 +70,6 @@ class CreateReferral extends React.Component {
                 </p>
                 <Button onClick={this.signOut}>
                     Sign Out
-                </Button>
-                <Button onClick={this.navigateToHome}>
-                    Home
                 </Button>
             </div>
             <div>
