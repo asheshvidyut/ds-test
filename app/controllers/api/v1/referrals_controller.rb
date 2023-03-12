@@ -13,6 +13,8 @@ class Api::V1::ReferralsController < ApplicationController
     email = create_referral_params[:email]
     ReferralMailer.send_email(email, current_user.email).deliver_now
     render json: {message: :ok}, status: :created
+  rescue ActiveRecord::RecordInvalid => e
+    render json: {message: e.message}, status: :bad_request
   end
 
   def index
