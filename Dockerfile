@@ -1,7 +1,7 @@
 FROM ruby:3.0.1
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apt-get update -y && apt-get -y dist-upgrade
-ENV NODE_VERSION=16.13.0
+ENV NODE_VERSION=14.17.4
 ENV RUBY_VERSION=3.0.1
 RUN apt install -y curl
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
@@ -14,11 +14,10 @@ RUN apt-get install -y \
       git \
       default-mysql-server \
       npm
-RUN npm install --global yarn
 WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 RUN bundle check || bundle install
 COPY package.json yarn.lock ./
-RUN yarn install --check-files --network-timeout=30000
+RUN npm install
 COPY . ./
 ENTRYPOINT ["./docker-entrypoint.sh"]

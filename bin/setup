@@ -1,44 +1,4 @@
-#!/usr/bin/env ruby
-require "fileutils"
-require 'yaml'
+#!/bin/bash
 
-# path to your application root.
-APP_ROOT = File.expand_path("..", __dir__)
-
-def system!(*args)
-  system(*args) || abort("\n== Command #{args} failed ==")
-end
-#
-# FileUtils.chdir APP_ROOT do
-#   # This script is a way to set up or update your development environment automatically.
-#   # This script is idempotent, so that you can run it at any time and get an expectable outcome.
-#   # Add necessary setup steps to this file.
-#
-#   puts "== Installing dependencies =="
-#   system! "gem install bundler --conservative"
-#   system("bundle check") || system!("bundle install")
-#
-#   puts "\n== Preparing database =="
-#   puts "\n== Please enter db username=="
-#   db_username = gets.chomp
-#   puts "\n== Please enter db password=="
-#   db_password = gets.chomp
-#   database_yml = YAML.load_file('config/database_sample.yml')
-#   ['default', 'development', 'test', 'production'].each do |env|
-#     database_yml[env]['username'] = db_username
-#     database_yml[env]['password'] = db_password
-#   end
-#   File.write("config/database.yml", database_yml.to_yaml)
-#
-#   system! "bin/rails db:prepare"
-#   system! "bin/rails db:create"
-#   system! "bin/rails db:migrate"
-#
-#   puts "\n== Removing old logs and tempfiles =="
-#   system! "bin/rails log:clear tmp:clear"
-#
-#   puts "\n== Restarting application server =="
-#   system! "bin/rails restart"
-# end
-
-system!('docker compose up')
+docker exec -it directshift-app rails db:create
+docker exec -it directshift-app rails db:migrate
