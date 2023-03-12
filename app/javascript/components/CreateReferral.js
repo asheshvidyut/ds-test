@@ -18,7 +18,7 @@ class CreateReferral extends React.Component {
     createReferral = () => {
         let email = document.getElementById("email").value;
         if (email.match(validRegex)) {
-            fetchWithCsrf('/user/' + this.state.user.id + '/referrals', {method: 'POST', body: JSON.stringify({
+            fetchWithCsrf('/referrals', {method: 'POST', body: JSON.stringify({
                 email: email
             })}, true).then((response) => {
                 if (response.status === 201) {

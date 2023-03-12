@@ -19,7 +19,7 @@ export default class ListReferral extends React.Component {
     }
 
     getReferral = () => {
-        fetchWithCsrf('/user/' + this.props.user.id + '/referrals', {})
+        fetchWithCsrf('/referrals', {})
             .then((response) => {
                 response.json().then((data) => {
                     this.setState({loading: false,

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   get 'user_details' => 'api/v1/user#user_details', as: :user_details_path
 
-  get 'user/:id/referrals' => 'api/v1/user#referrals', as: :user_referrals_path
-  post 'user/:id/referrals' => 'api/v1/user#create_referral', as: :send_referral_path
+  get 'referrals' => 'api/v1/referrals#index', as: :user_referrals_path
+  post 'referrals' => 'api/v1/referrals#create', as: :send_referral_path
 
 end

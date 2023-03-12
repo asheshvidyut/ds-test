@@ -70,4 +70,7 @@ gem "letter_opener", group: :development
 
 group :development, :test do
   gem 'rspec-rails', '~> 6.0.0'
+  gem 'pry', '~> 0.13.1'
+  gem 'factory_girl_rails'
 end
+
